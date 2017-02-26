@@ -1,0 +1,20 @@
+{% extends "::base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block body %}
+    <div class="container">
+        <br><br>
+        <div class="panel panel-default ">
+            <div class="panel-heading">Mon profile</div>
+            <div class="panel-body">
+                {% block fos_user_content %}
+                    {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+                {% endblock fos_user_content %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

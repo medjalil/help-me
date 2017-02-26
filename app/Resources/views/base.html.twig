@@ -33,15 +33,20 @@
                             <li><a href="{{path('about')}}">About</a></li>
                             <li><a href="{{path('blog')}}">Blog</a></li>
                             <li><a href="{{path('contact')}}">Contact</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Username <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Profile</a></li>
-                                    <li><a href="#">Password</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Log out</a></li>
-                                </ul>
-                            </li>
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{app.user.username}} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{path('fos_user_profile_show')}}">Profile</a></li>
+                                        <li><a href="{{path('fos_user_change_password')}}">Password</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="{{path('fos_user_security_logout')}}">Log out</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li><a href="{{path('fos_user_security_login')}}">Sign in </a></li>
+                                <li><a href="{{path('fos_user_registration_register')}}">Sign up </a></li>
+                                {% endif %}
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
